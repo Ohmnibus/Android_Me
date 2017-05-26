@@ -16,8 +16,10 @@
 
 package com.example.android.android_me.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.Toast;
 
 import com.example.android.android_me.R;
@@ -26,6 +28,9 @@ import com.example.android.android_me.R;
 // Implement the MasterListFragment callback, OnImageClickListener
 public class MainActivity extends AppCompatActivity implements MasterListFragment.OnImageClickListener{
 
+    int selHead = 0;
+    int selBody = 0;
+    int selLeg = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,11 +45,30 @@ public class MainActivity extends AppCompatActivity implements MasterListFragmen
         Toast.makeText(this, "Position clicked = " + position, Toast.LENGTH_SHORT).show();
 
         // TODO (2) Based on where a user has clicked, store the selected list index for the head, body, and leg BodyPartFragments
-
+        int part = position / 12;
+        switch (part) {
+            case 0:
+                selHead = position % 12;
+                break;
+            case 1:
+                selBody = position % 12;
+                break;
+            case 2:
+                selLeg = position % 12;
+                break;
+        }
         // TODO (3) Put this information in a Bundle and attach it to an Intent that will launch an AndroidMeActivity
-
+        final Intent intent = new Intent(this, AndroidMeActivity.class);
+        intent.putExtra(AndroidMeActivity.EXTRA_HEAD, selHead);
+        intent.putExtra(AndroidMeActivity.EXTRA_BODY, selBody);
+        intent.putExtra(AndroidMeActivity.EXTRA_LEG, selLeg);
         // TODO (4) Get a reference to the "Next" button and launch the intent when this button is clicked
-
+        findViewById(R.id.bt_next).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MainActivity.this.startActivity(intent);
+            }
+        });
     }
 
 }
