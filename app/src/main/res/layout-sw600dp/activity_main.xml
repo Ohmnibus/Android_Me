@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:orientation="horizontal"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	>
+
+	<fragment
+		xmlns:android="http://schemas.android.com/apk/res/android"
+		android:id="@+id/master_list_fragment"
+		android:name="com.example.android.android_me.ui.MasterListFragment"
+		android:layout_width="400dp"
+		android:layout_height="match_parent"
+		tools:layout="@layout/fragment_master_list"
+		/>
+
+	<View
+		android:layout_height="match_parent"
+		android:layout_width="1dp"
+		android:background="?android:attr/listDivider"
+		/>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:orientation="vertical">
+
+		<!-- Three containers for each Android-Me body part -->
+		<!-- This container holds the head BodyPartFragment of the custom Android-Me image -->
+		<FrameLayout android:id="@+id/head_container"
+			android:layout_width="match_parent"
+			android:layout_height="180dp"
+			android:scaleType="centerInside"/>
+
+		<!-- The remaining containers for the body and leg BodyPartFragments -->
+		<FrameLayout android:id="@+id/body_container"
+			android:layout_width="match_parent"
+			android:layout_height="180dp"
+			android:scaleType="centerInside"/>
+
+		<FrameLayout android:id="@+id/leg_container"
+			android:layout_width="match_parent"
+			android:layout_height="180dp"
+			android:scaleType="centerInside"/>
+
+	</LinearLayout>
+</LinearLayout>
